@@ -1,0 +1,291 @@
+@charset "utf-8";
+
+/* 以下CSSリセット　https://github.com/filipelinhares/ress/blob/master/ress.css
+https://github.com/hankchizljaw/modern-css-reset/blob/master/dist/reset.css
+*/
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* Remove default margin */
+body,h1,h2,h3,h4,p,ul[class],ol[class],figure,blockquote,dl,dd {
+  margin: 0;
+	padding: 0;
+}
+/* Set core root defaults */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  word-break: normal;
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+ul[class],ol[class] {
+  list-style: none;
+}
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+/* Make images easier to work with */
+img,picture {
+  max-width: 100%;
+  display: block;
+}
+input,button,textarea,select {
+  font: inherit;
+}
+img:not([alt]) {
+  filter: blur(10px);
+}
+/* Remove all animations and transitions for people that prefer not to see them */
+/*
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+*/
+/* 以上CSSリセット */
+
+/* 基本設定 */
+html {
+	font-size: 62.5%;
+}
+body {
+	color: rgba(5, 5, 15, 1.0); /* ベースの文字色. 白より少し黄味がかった感じ */
+	/*font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
+	font-family: sans-serif; /*, serif, "メイリオ", "游明朝";*/
+	font-size: 1.4em; /* Chromeのバグ対策でem指定 */
+  /*
+	background-image: url("../img/background1_mono.png");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+	background-position: center;
+  background-size: cover;
+  background-color: rgba(3, 18, 64,1.0);
+  */
+  background-color: rgba(255, 210, 200,1.0);
+}
+body::before {
+  content: "";
+  display:block;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-50;
+  width:100vw;
+  height:100vh;
+  /*background-image: url("../img/background1_mono.png");*/
+  background-repeat: no-repeat;
+	background-position: center 70%;
+  background-size: cover;
+
+}
+
+/* リンクに対する基本指定 */
+a {
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.4s ease;
+}
+a:hover {
+	color: rgba(255,10,0,1);
+}
+
+
+/* 下線が出る効果つきリンク */
+.animated-underline a {
+	transition: 0.25s ease-in-out;
+	position: relative;
+}
+.animated-underline a::before {
+	content: "";
+	width: 0;
+  height: 0.2rem;
+  background: rgba(255,210,0,1);
+  position: absolute;
+	left: 50%;
+  bottom: 0;
+	transform: translateX(-50%);
+	transition: 0.25s ease-out;
+}
+.animated-underline a:hover::before {
+	width: 100%;
+}
+.current-page a::before {
+	width: 100%;
+	background: rgba(255,216,200,1);
+}
+.current-page a {
+	color: rgba(255,216,200,1);
+}
+/* 全体のコンテンツ部分 flexboxにしてcolumn分け */
+#contents {
+	/*
+  background-color: rgba(0,0,0,0.1);
+	box-shadow: 0 0 2rem 2rem rgba(0,0,0,0.1);
+  */
+	margin: 1rem 3vw 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+/* main column の一般設定. 統一性を持たせるため見出しの設定も行う. */
+#column__main {
+	width: 70%; /* contentsに対して7割を占める */
+	margin: 0 2.5rem;
+}
+/*#column__main h1*/
+h1 {
+	font-size: 3.2rem;
+	mix-blend-mode: luminosity;
+	margin: 3rem auto 2.4rem 0;
+}
+h2 {
+	border-left: 0.4rem solid rgba(175,175,145,1);
+	border-bottom: 0.1rem solid rgba(175,175,145,1);
+	padding-left: 0.8rem;
+	margin: 2.4rem auto 2rem 0;
+	position: relative;
+}
+h2::before {
+	content: "";
+	position: absolute;
+	bottom: -0.4rem;
+	left: -0.4rem;
+	width: calc(100% + 0.4rem);
+	border-bottom: 0.1rem solid rgba(223,223,203,1);
+}
+
+h3 {
+	margin: 1rem auto 0.8rem 0;
+}
+h3::before {
+	font-family: "Font Awesome 5 Free";
+  font-size: 1.5rem;
+  font-weight: 900;
+	content: "\f0c8";
+	margin-right: 0.4rem;
+}
+
+/* second column の設定 */
+#column__second {
+	width: 24%;
+}
+/*　twitter　*/
+#twitter-title {
+	font-size: 2.8rem;
+	padding-left: 1rem;
+	margin-bottom: 0.4rem;
+	mix-blend-mode: lighten;
+}
+#twitter-title::after {
+	font-family: "Font Awesome 5 Brands";
+  font-size: 2.8rem;
+  font-weight: 400;
+	content: "\f099";
+	margin-left: 0.6rem;
+}
+
+/* フッタ */
+footer {
+	width: 100%;
+	text-align: center;
+	margin: 1.5rem 0 0.7rem;
+}
+footer p {
+	background: rgba(0,0,0,0.5);
+	box-shadow: 0 0 0.8rem 0.7rem rgba(0,0,0,0.5);
+	display: inline-block;
+	font-size: 1.3rem;
+}
+
+#correctness {
+  display: inline;
+  background: rgba(150,255,200,1);
+  border-radius: 0.8rem;
+  padding: 0.5rem 1rem 0.5rem;
+}
+
+input[type="submit"], input[type="button"] {
+	border-radius: 2rem;
+	background: linear-gradient(135deg,rgba(150,150,150,0.4), rgba(0,0,0,0.4));
+	color: rgba(255,255,255,1);
+	margin: 1.2rem;
+	padding: 0.7rem 1.8rem;
+}
+input[type="submit"]:focus, input[type="button"]:focus {
+	outline: none;
+	background-color: #000;
+	color: #fff;
+}
+input[type="submit"]:hover, input[type="button"]:hover {
+	outline: none;
+	background-color: #000;
+	color: #fff;
+}
+
+/*コンタクトフォーム*/
+/*autocompleteで変になるのについては保留*/
+.contact_form_container p {
+	display: block;
+}
+.contact_form_container fieldset {
+	padding: 1.5rem 2rem 1rem;
+	margin: 2rem 3% auto;
+}
+.contact_form_container input,textarea {
+	background-color: rgba(0,0,0,0);
+	border: 1px solid rgba(220,220,220,0.3);
+	border-radius: 0;
+	color: inherit;
+	margin: 0.3rem auto 1.8rem;
+}
+.contact_form_container input:focus, textarea:focus {
+	outline: none;
+	background: rgba(0,0,0,0.3);
+	border: 1px solid rgba(220,220,220,0.8);
+	border-radius: 0.7rem;
+}
+.contact_form_container input::-moz-focus-inner, textarea::-moz-focus-inner{ /*Firefox用*/
+    border: none;
+}
+.contact_form_container textarea {
+	resize: none;
+	width: 85%;
+	height: 10rem;
+}
+.contact_form_container #send_btn {
+	text-align: right;
+}
+.contact_form_container button[type="submit"] {
+	border-radius: 2rem;
+	background: linear-gradient(135deg,rgba(150,150,150,0.4), rgba(0,0,0,0.4));
+	color: rgba(255,255,255,1);
+	margin: 1.2rem;
+	padding: 0.7rem 1.8rem;
+}
+.contact_form_container button[type="submit"]:focus {
+	outline: none;
+	background-color: #000;
+	color: #fff;
+}
+.contact_form_container button[type="submit"]:hover {
+	outline: none;
+	background-color: #000;
+	color: #fff;
+}

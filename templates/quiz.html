@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h2>第{{question_num}}問</h2>
+  <p>問題：{{question_text}}</p>
+  <div id="status" style="display: none;">
+    <p id="type_of_question">{{question_type}}</p>
+    <p id="num_of_answer">{{num_of_answer}}</p>
+  </div>
+  <form>
+    <p>答えを入力</p>
+    {% if viewmode %}
+      <input type="button" name="check" onclick="display_answer()" value="check" />
+    {% else %}
+      {% for _ in range(num_of_answer) %}
+      <input type="text" class="answertext" name="answertext" autocomplete="off" />
+      {% endfor %}
+      <input type="button" name="check" onclick="check_answer()" value="check" />
+    {% endif %}
+  </form>
+  <h2>結果</h2>
+  <div id="output_text", style="display: none;">
+    {% if viewmode == False %}
+      <div id="correctness"></div>
+    {% endif %}
+    {% for answer in correct_answers %}
+      <p class="answer">{{ answer }}</p>
+    {% endfor %}
+    <form action="/quiz" method="post">
+      <input type="hidden" id="submit_correctness" name="correctness" >
+      <input type="submit" name="submit" value="next" />
+    </form>
+  </div>
+{% endblock %}

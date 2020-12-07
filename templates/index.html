@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+  <form action="/start" method="post">
+    <input type="number" name="question_num" min="0" value="0" required/>
+    <p><label for="randomflag">問題を並び替えるかどうかのフラグ</label></p>
+    <input type="radio" id="randomflag" name="randomflag" value="on" checked>on
+    <input type="radio" id="randomflag" name="randomflag" value="off">off
+    <p><label for="viewflag">答えを入力するかどうかのフラグ</label></p>
+    <input type="radio" id="viewflag" name="viewflag" value="on">on
+    <input type="radio" id="viewflag" name="viewflag" value="off" checked>off<br/>
+    <input id="start" type="submit" value="start"/>
+  </form>
+{% endblock %}
